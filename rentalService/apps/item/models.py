@@ -1,5 +1,5 @@
 from django.db import models
-from apps.user.models import User
+from apps.user.models import RealUser
 # Create your models here.
 
 class Item(models.Model):
@@ -12,12 +12,12 @@ class Item(models.Model):
 
     ## NOT NULL
     name = models.CharField(max_length=128)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(RealUser, on_delete=models.CASCADE)
 
     price = models.IntegerField()
     minRentDay = models.IntegerField()
     maxRentDay = models.IntegerField()
-    picture = models.TextField()
+    picture = models.ImageField(blank=True, upload_to='images/%Y/%m-%d', max_length=128)
     info = models.TextField()
 
 
