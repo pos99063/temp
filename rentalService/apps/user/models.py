@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth.models import (
 	BaseUserManager, AbstractBaseUser,
 	PermissionsMixin)
-
+from django.utils import timezone
 
 class RealUserManager(BaseUserManager):
 	def create_user(self, userId, password=None):
@@ -44,7 +44,7 @@ class RealUser(AbstractBaseUser, PermissionsMixin):
 	accountInfo = models.CharField(max_length=128, blank=True)
 	userInfo = models.CharField(max_length=128, blank=True)
 
-	createTime = models.DateTimeField(default=datetime.datetime.now())
+	createTime = models.DateTimeField(default=timezone.now)
 	avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
 
 	is_active = models.BooleanField(default=True)
